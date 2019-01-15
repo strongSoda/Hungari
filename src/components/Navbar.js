@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
+import styled from 'styled-components';
+import { ButtonContainer } from './Button';
 
 class Navbar extends Component {
     state = {  }
     render() { 
         return ( 
-            <nav className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">
+            <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5">
                 {/* 
 https://www.iconfinder.com/icons/1243689/call_phone_icon
 Creative Commons (Attribution 3.0 Unported);
 https://www.iconfinder.com/Makoto_msk 
                 */}
+
+                {/* this is similar to anchor tags in html */}
                 <Link to='/'>
                     <img src={ logo } alt="store logo" className="navbar-brand"></img>
                 </Link>
@@ -21,13 +25,24 @@ https://www.iconfinder.com/Makoto_msk
                     </li>
                 </ul>
                 <Link to="/cart" className="ml-auto">
-                    <button>
-                        <i className="fas fa-cart-plus"> My Cart</i>
-                    </button>
+                    <ButtonContainer>
+                        <span className="mr-2">
+                            <i className="fas fa-cart-plus"></i> My Cart
+                        </span>
+                    </ButtonContainer>
                 </Link>
-            </nav>
+            </NavWrapper>
          );
     }
 }
  
 export default Navbar;
+
+const NavWrapper = styled.nav`
+    background: #2a2a72;
+    .nav-link{
+        color: #f3f3f3 !important;
+        font-size: 1.3rem;
+        text-transform: capitalize;
+    }
+`;
