@@ -38,6 +38,7 @@ https://www.iconfinder.com/Makoto_msk
  
 export default Navbar;
 
+// this is a styled component
 const NavWrapper = styled.nav`
     background: #2a2a72;
     .nav-link{

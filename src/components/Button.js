@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// this is a styled component a.k.a truly resuable component as it carries it's css along.
 export const ButtonContainer = styled.button`
     text-transform: capitalize;
     font-size: 1.4rem;
