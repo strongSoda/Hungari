@@ -8,9 +8,9 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 
-    // wrappin entire app in the context component 
+    // wrapping entire app in the context component 
 <ProductProvider>
-    // wrapping everything inside of the router so that we have all the routes available in our entire app.
+     {/* wrapping everything inside of the router so that we have all the routes available in our entire app. */}
     <Router>
         <App />
     </Router>

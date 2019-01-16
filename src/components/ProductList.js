@@ -20,14 +20,20 @@ class ProductList extends Component {
                         top component */}
                             <ProductConsumer>
                                 {(value) => {
-                                    return <h1>{value}</h1>; 
+                                    // console.log(value);
+                                    /**
+                                     * products is an array. So we are looping through
+                                     * all the product on by one.
+                                     */
+                                    return value.products.map( product => {
+                                        return <Product key={product.id} product={product}></Product>
+                                    });
                                 }}
                             </ProductConsumer>
                         </div>
                     </div>
                 </div>
             </React.Fragment>  
-                // <Product></Product>
         );
     }
 }
