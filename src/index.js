@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom';
+import { ProductProvider } from './context';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-// wrapping everything inside of the router so that we have all the routes available in our entire app.
-<Router>
-    <App />
-</Router>
+
+    // wrappin entire app in the context component 
+<ProductProvider>
+    // wrapping everything inside of the router so that we have all the routes available in our entire app.
+    <Router>
+        <App />
+    </Router>
+</ProductProvider>
+
 , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
