@@ -18,6 +18,14 @@ class Product extends Component {
                         <Link to='/details'>
                             <img src={img} alt={title} className="card-img-top"></img>
                         </Link>
+                        <button className="btn-cart" disabled={inCart? true: false} 
+                         onClick={ () => { console.log('added to the cart') }}>
+                        {inCart?
+                        (<p className="text-capitalize mb-0" disabled>
+                            {" "} in cart
+                        </p>): 
+                            <i className="fas fa-cart-plus"></i>}
+                        </button>
                     </div>
                 </div>
             </ProductWrapper>
