@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ProductConsumer } from '../context';
+// this package is for runtime type checking 
+// & comes bundled with create-react-app
+
+import PropTypes from 'prop-types';
  
 class Product extends Component {
     
@@ -39,12 +43,22 @@ class Product extends Component {
                     </div>
                 </div>
             </ProductWrapper>
-
          );
     }
 }
  
 export default Product;
+
+// creating a propType
+Product.propTypes = {
+    product: PropTypes.shape({
+        id: PropTypes.number,
+        img: PropTypes.string,
+        title: PropTypes.string,
+        price: PropTypes.number,
+        inCart: PropTypes.bool
+    }).isRequired
+}
 
 const ProductWrapper = styled.div`
     .card{
@@ -81,9 +95,9 @@ const ProductWrapper = styled.div`
         bottom: 0;
         right: 0;
         padding: 0.2rem 0.4rem;
-        background: #009ffd;
+        background: var(--lightBLue);
         border: none;
-        color: #f3f3f3;
+        color: var(--mainWhite);
         font-size: 1.4rem;
         border-radius: 0.5rem 0rem 0rem 0rem;
         transform: translate(100%,100%);
@@ -93,7 +107,7 @@ const ProductWrapper = styled.div`
         transform: translate(0,0);
     }
     .card-btn:hover{
-        color: #2a2a72;
+        color: var(--mainBlue);
         cursor: pointer;
     }
 `;
