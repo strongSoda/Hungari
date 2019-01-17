@@ -15,9 +15,27 @@ import { storeProducts, detailProduct } from './data';
 class ProductProvider extends Component {
 
     state = { 
-        products: storeProducts,
+        products: [],
         // can be directly written with object destructuring
         detailProduct: detailProduct
+     }
+
+     componentDidMount() {
+         this.setProducts();
+     }
+
+     setProducts = () => {
+         let products = [];
+
+        //  looping through each array object to copy only values into other array.
+         storeProducts.forEach( item => {
+             const singlItem = {...item};
+             products = [...products, singlItem];
+         })
+
+         this.setState( () => {
+             return {products};
+         })
      }
 
      handleDetail = () => {
