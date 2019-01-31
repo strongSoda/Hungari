@@ -18,19 +18,30 @@ class Product extends Component {
         return ( 
             <ProductWrapper className="mx-auto col-9 col-md-6 col-lg-3 my-3">
                 <div className="card">
-                    <div className="img-container p-5" onClick={ () => {console.log('you clicked me on the img conatiner') }}>
-                        <Link to='/details'>
-                            <img src={img} alt={title} className="card-img-top"></img>
-                        </Link>
-                        <button className="card-btn" disabled={inCart? true: false} 
-                         onClick={ () => { console.log('added to the cart') }}>
-                        {inCart?
-                        (<p className="text-capitalize mb-0" disabled>
-                            {" "} in cart
-                        </p>): 
-                            <i className="fas fa-cart-plus"></i>}
-                        </button>
-                    </div>
+
+                    <ProductConsumer>
+                        {(value) => (
+                             <div className="img-container p-5" onClick={ () => 
+                                value.handleDetail(id) }>
+                             <Link to='/details'>
+                                 <img src={img} alt={title} className="card-img-top"></img>
+                             </Link>
+                             <button 
+                                className="card-btn" disabled={inCart? true: false} 
+                                onClick={ () => {
+                                    value.addToCart(id)
+                                }}
+                             >
+                             {inCart?
+                             (<p className="text-capitalize mb-0" disabled>
+                                 {" "} in cart
+                             </p>): 
+                                 <i className="fas fa-cart-plus"></i>}
+                             </button>
+                         </div>
+                        )}
+                    </ProductConsumer>
+
                     {/* card footer */}
                     <div className="card-footer d-flex justify-content-between">
                         <p className="align-self-center mb-0">

@@ -17,7 +17,8 @@ class ProductProvider extends Component {
     state = { 
         products: [],
         // can be directly written with object destructuring
-        detailProduct: detailProduct
+        detailProduct: detailProduct,
+        cart: []
      }
 
      componentDidMount() {
@@ -38,14 +39,43 @@ class ProductProvider extends Component {
          })
      }
 
-     handleDetail = () => {
-        console.log("hello from detail");
+    //  method to get item based on item.
+     getItem = (id) => {
+        //  compare each products id in array to passed id
+        const product = this.state.products.find( item => item.id === id);
+        return product;
+     }
+
+     handleDetail = (id) => {
+        // console.log("hello from detail");
+        const product = this.getItem(id);
+        this.setState( () => {
+            return {detailProduct : product};
+        })
      }
 
      
-     addToCart = () => {
-        console.log("hello from addToCart");
-     }
+     addToCart = (id) => {
+        // console.log(`hello from addToCart. Id is: ${id}`);
+        let tempProducts = [...this.state.products];
+        // iterating through the array & finding the index of product
+        const index = tempProducts.indexOf(this.getItem(id));
+        // grab the product at the returned index
+        const product = tempProducts[index];
+        // change properties of product when adding to cart
+        product.inCart = true;
+        product.count = 1;
+        const price = product.price;
+        product.total = price;
+
+        // change state
+        this.setState( () => {
+            return {products: tempProducts, cart: [...this.state.cart], product};
+        }, () => {
+            console.log(this.state);
+        });
+     };
+
     render() { 
 
          // debugging final rendering of products
